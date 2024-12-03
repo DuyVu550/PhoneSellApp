@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolBarMain);
+      //  Toolbar toolbar = findViewById(R.id.toolBarMain);
         ViewFlipper viewFlipper = findViewById(R.id.viewFlipper);
         RecyclerView recyclerView = findViewById(R.id.recycleView);
         ListView listViewMain = findViewById(R.id.ListViewMain);
