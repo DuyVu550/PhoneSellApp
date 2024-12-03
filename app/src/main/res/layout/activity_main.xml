@@ -20,7 +20,7 @@
                 android:id="@+id/toolBarMain"
                 android:layout_width="match_parent"
                 android:layout_height="76dp"
-                android:background="@color/pinky"
+                android:background="@color/red"
                 app:title="Trang chính"
                 app:titleMarginTop="40dp"></androidx.appcompat.widget.Toolbar>
             <ViewFlipper
@@ -39,7 +39,7 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sản phẩm mới nhất"
+                    android:text="Sản phẩm cũ"
                     android:textSize="30sp"
                     android:textStyle="bold" />
                 <androidx.recyclerview.widget.RecyclerView
