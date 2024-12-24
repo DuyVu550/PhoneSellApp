@@ -24,20 +24,28 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class MainActivity extends AppCompatActivity {
     // Ánh xa
-    Toolbar toolbar = findViewById(R.id.toolBarMain);
-    ViewFlipper viewFlipper = findViewById(R.id.viewFlipper);
-    RecyclerView recyclerView = findViewById(R.id.recycleView);
-    ListView listViewMain = findViewById(R.id.ListViewMain);
-    NavigationView navigationView = findViewById(R.id.navigationView);
-    DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+    Toolbar toolbar;
+    ViewFlipper viewFlipper;
+    RecyclerView recyclerView ;
+    ListView listViewMain ;
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        toolbar = findViewById(R.id.toolBarMain);
+        viewFlipper = findViewById(R.id.viewFlipper);
+        recyclerView = findViewById(R.id.recycleView);
+        listViewMain = findViewById(R.id.ListViewMain);
+        navigationView = findViewById(R.id.navigationView);
+        drawerLayout = findViewById(R.id.drawerLayout);
         ActionViewFlipper();
         ActionBar();
     }
@@ -69,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
         Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_right);
         viewFlipper.setInAnimation(slide_in);
         viewFlipper.setInAnimation(slide_out);
-
-
     }
 
 
