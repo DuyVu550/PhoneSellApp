@@ -23,7 +23,7 @@
                 android:layout_height="76dp"
                 android:background="@color/red"
                 app:title="Trang chính"
-                app:titleMarginTop="40dp"></androidx.appcompat.widget.Toolbar>
+                app:titleMarginTop="0dp"></androidx.appcompat.widget.Toolbar>
             <ViewFlipper
                 android:id="@+id/viewFlipper"
                 android:layout_width="match_parent"
