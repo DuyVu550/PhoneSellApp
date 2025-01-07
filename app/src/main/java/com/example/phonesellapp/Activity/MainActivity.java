@@ -1,4 +1,4 @@
-package com.example.phonesellapp;
+package com.example.phonesellapp.Activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,20 +11,18 @@ import android.widget.ViewFlipper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.phonesellapp.Adapter.LoaiSPAdapter;
+import com.example.phonesellapp.Model.LoaiSP;
+import com.example.phonesellapp.R;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 public class MainActivity extends AppCompatActivity {
     // Ánh xa
@@ -34,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     ListView listViewMain ;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+    LoaiSPAdapter loaiSPAdapter;
+    List<LoaiSP> mangloaiSP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         listViewMain = findViewById(R.id.ListViewMain);
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawerLayout);
+        mangloaiSP = new ArrayList<>();
+        loaiSPAdapter = new LoaiSPAdapter(mangloaiSP, getApplicationContext());
+        listViewMain.setAdapter(loaiSPAdapter);
         ActionViewFlipper();
         ActionBar();
     }
