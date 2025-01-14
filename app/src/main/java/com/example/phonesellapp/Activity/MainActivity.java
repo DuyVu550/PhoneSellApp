@@ -1,16 +1,21 @@
 package com.example.phonesellapp.Activity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
-//import android.widget.Toolbar;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
-import androidx.appcompat.widget.Toolbar;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,10 +24,17 @@ import com.bumptech.glide.Glide;
 import com.example.phonesellapp.Adapter.LoaiSPAdapter;
 import com.example.phonesellapp.Model.LoaiSP;
 import com.example.phonesellapp.R;
+import com.example.phonesellapp.retrofit.APIBanhang;
+import com.example.phonesellapp.retrofit.RetrofitClient;
+import com.example.phonesellapp.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     // Ánh xa
@@ -34,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     LoaiSPAdapter loaiSPAdapter;
     List<LoaiSP> mangloaiSP;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    APIBanhang apiBanhang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +63,25 @@ public class MainActivity extends AppCompatActivity {
         mangloaiSP = new ArrayList<>();
         loaiSPAdapter = new LoaiSPAdapter(mangloaiSP, getApplicationContext());
         listViewMain.setAdapter(loaiSPAdapter);
-        ActionViewFlipper();
+        apiBanhang = RetrofitClient.getInstance(Utils.BASE_URL).create(APIBanhang.class);
+
         ActionBar();
+        if(isConnected(this)){
+            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG).show();
+            ActionViewFlipper();
+            getLoaiSanPham();
+        }
+    }
+    private void getLoaiSanPham(){
+       compositeDisposable.add((apiBanhang.getLoaiSP().subscribeOn(Schedulers.io()).
+               observeOn(AndroidSchedulers.mainThread()).
+               subscribe(
+                       loaiSPModel -> {
+                           if(loaiSPModel.isSuccess()){
+                               Toast.makeText(getApplicationContext(), loaiSPModel.getResult().get(0).getTensanpham(), Toast.LENGTH_LONG).show();
+                           }
+                       }
+               )));
     }
     private void ActionBar(){
         setSupportActionBar(toolbar);
@@ -81,6 +112,20 @@ public class MainActivity extends AppCompatActivity {
         viewFlipper.setInAnimation(slide_in);
         viewFlipper.setInAnimation(slide_out);
     }
-
-
+    private boolean isConnected(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network network = connectivityManager.getActiveNetwork();
+        NetworkCapabilities networkCapabilities = connectivityManager.getNetworkCapabilities(network);
+        boolean isAvailable = false;
+        if (networkCapabilities != null) {
+            if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                isAvailable = true;
+            } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                isAvailable = true;
+            } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                isAvailable = true;
+            }
+        }
+        return isAvailable;
+    }
 }

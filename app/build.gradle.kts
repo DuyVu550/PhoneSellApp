@@ -38,9 +38,17 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.support.annotations)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    //RxJava
+    implementation (libs.rxandroid)
+    implementation (libs.rxjava)
+    // Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.rxjava3.retrofit.adapter)
     implementation("com.github.bumptech.glide:glide:4.16.0@aar"){
         isTransitive = true
     }
