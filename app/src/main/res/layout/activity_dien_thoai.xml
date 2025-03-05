@@ -9,6 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_marginTop="35dp"
         android:id="@+id/toolbar"
+        android:backgroundTint="@color/red"
         app:title="Điện thoại"
         android:background="#B2B4C1"
         app:layout_constraintTop_toTopOf="parent"
