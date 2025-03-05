@@ -49,7 +49,7 @@ public class DienThoaiActivity extends AppCompatActivity {
         apiBanhang = RetrofitClient.getInstance(Utils.BASE_URL).create(APIBanhang.class);
         sanPhamMoiList = new ArrayList<>();
         loai = getIntent().getIntExtra("loai", 2);
-        getData();
+        getData(); //l
         ActionBar();
     }
     private void ActionBar() {
