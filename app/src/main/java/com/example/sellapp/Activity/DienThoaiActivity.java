@@ -49,7 +49,7 @@ public class DienThoaiActivity extends AppCompatActivity {
         apiBanhang = RetrofitClient.getInstance(Utils.BASE_URL).create(APIBanhang.class);
         sanPhamMoiList = new ArrayList<>();
         loai = getIntent().getIntExtra("loai", 2);
-        getData();
+        getData(); //l
         ActionBar();
     }
     private void ActionBar() {
@@ -73,33 +73,6 @@ public class DienThoaiActivity extends AppCompatActivity {
 
                 )));
     }
-    /* private void getSpMoi(){
-         compositeDisposable.add(apiBanhang.getSpMoi().
-                 subscribeOn(Schedulers.io()).
-                 observeOn(AndroidSchedulers.mainThread()).
-                 subscribe(
-                         sanPhamMoiModel -> {
-                             if(sanPhamMoiModel.isSuccess()){
-                                 mangSpMoi = sanPhamMoiModel.getResult();
-                                 spAdapter = new SanPhamMoiAdapter(getApplicationContext(), mangSpMoi);
-                                 recyclerView.setAdapter(spAdapter);
-                             }
-                         }
-                 ));
-     }
-     private void getLoaiSanPham(){
-         compositeDisposable.add((apiBanhang.getLoaiSP().subscribeOn(Schedulers.io()).
-                 observeOn(AndroidSchedulers.mainThread()).
-                 subscribe(
-                         loaiSPModel -> {
-                             if(loaiSPModel.isSuccess()){
-                                 mangloaiSP = loaiSPModel.getResult();
-                                 loaiSPAdapter = new LoaiSPAdapter(mangloaiSP, getApplicationContext());
-                                 listViewMain.setAdapter(loaiSPAdapter);
-                             }
-                         }
-                 )));
-     }*/
     @Override
     protected void onDestroy() {
         super.onDestroy();
