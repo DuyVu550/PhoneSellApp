@@ -60,4 +60,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0@aar"){
         isTransitive = true
     }
+    //brade
+    implementation (libs.notification.badge)
 }

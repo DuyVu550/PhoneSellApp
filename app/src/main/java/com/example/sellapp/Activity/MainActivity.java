@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         apiBanhang = RetrofitClient.getInstance(Utils.BASE_URL).create(APIBanhang.class);
         mangSpMoi = new ArrayList<>();
+        if(Utils.mangiohang == null){
+            Utils.mangiohang = new ArrayList<>();
+        }
         ActionBar();
         if(isConnected(this)){
             Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG).show();
