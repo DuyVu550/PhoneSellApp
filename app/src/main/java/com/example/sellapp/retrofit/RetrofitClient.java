@@ -1,5 +1,6 @@
 package com.example.sellapp.retrofit;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;

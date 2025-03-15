@@ -22,5 +22,13 @@ public interface APIBanhang {
             @Field("page") int page,
             @Field("loai") int loai
             );
+    @POST("dangky.php")
+    @FormUrlEncoded
+    Observable<SanPhamMoiModel> dangKy(
+            @Field("email") String email,
+            @Field("pass") String pass,
+            @Field("username") String username,
+            @Field("mobile") String mobile
+    );
 }
 
