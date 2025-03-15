@@ -62,4 +62,5 @@ dependencies {
     }
     //brade
     implementation (libs.notification.badge)
+    implementation(libs.eventbus)
 }

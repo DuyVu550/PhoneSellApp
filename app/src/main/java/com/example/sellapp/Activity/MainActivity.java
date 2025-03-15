@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ import com.example.sellapp.retrofit.APIBanhang;
 import com.example.sellapp.retrofit.RetrofitClient;
 import com.example.sellapp.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,12 +59,34 @@ public class MainActivity extends AppCompatActivity {
     APIBanhang apiBanhang;
     List<SanPhamMoi> mangSpMoi;
     SanPhamMoiAdapter spAdapter;
+    NotificationBadge badge;
+    FrameLayout frameLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        AnhXa();
+        ActionBar();
+        if(isConnected(this)){
+            ActionViewFlipper();
+            getLoaiSanPham();
+            getSpMoi();
+            getEventClick();
+        }
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        int total = 0;
+        for (int i = 0; i < Utils.mangiohang.size(); i++) {
+            total += Utils.mangiohang.get(i).getSoluong();
+        }
+        badge.setText(String.valueOf(total));
+    }
+    private void AnhXa(){
         toolbar = findViewById(R.id.toolBarMain);
         viewFlipper = findViewById(R.id.viewFlipper);
         recyclerView = findViewById(R.id.recycleView);
@@ -74,17 +98,24 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         apiBanhang = RetrofitClient.getInstance(Utils.BASE_URL).create(APIBanhang.class);
         mangSpMoi = new ArrayList<>();
+        badge = findViewById(R.id.menu_sl);
+        frameLayout = findViewById(R.id.frameGioHang);
         if(Utils.mangiohang == null){
             Utils.mangiohang = new ArrayList<>();
+        }else {
+            int total = 0;
+            for (int i = 0; i < Utils.mangiohang.size(); i++) {
+                total += Utils.mangiohang.get(i).getSoluong();
+            }
+            badge.setText(String.valueOf(total));
         }
-        ActionBar();
-        if(isConnected(this)){
-            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG).show();
-            ActionViewFlipper();
-            getLoaiSanPham();
-            getSpMoi();
-            getEventClick();
-        }
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gioHang = new Intent(getApplicationContext(), GioHangActivity.class);
+                startActivity(gioHang);
+            }
+        });
     }
     private  void getEventClick(){
         listViewMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -129,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                                 loaiSPAdapter = new LoaiSPAdapter(mangloaiSP, getApplicationContext());
                                 listViewMain.setAdapter(loaiSPAdapter);
                             }
+
                         }
                 )));
     }

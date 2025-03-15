@@ -2,29 +2,24 @@ package com.example.sellapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sellapp.Activity.ChitietActivity;
-import com.example.sellapp.Activity.MainActivity;
-import com.example.sellapp.ItemClickListener;
+import com.example.sellapp.Interface.ItemClickListener;
 import com.example.sellapp.Model.SanPhamMoi;
 import com.example.sellapp.R;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.logging.LogRecord;
 
 public class DienThoaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
