@@ -122,7 +122,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         public void setListener(IImageClickListener listener){
             this.listener = listener;
         }
-
         @Override
         public void onClick(View view) {
             if(view == imgtru){
