@@ -83,7 +83,11 @@ public class DangKyActivity extends AppCompatActivity {
                                 subscribe(
                                         userModel -> {
                                             if(userModel.isSuccess()){
-                                                Toast.makeText(getApplicationContext(), "thanh cong", Toast.LENGTH_LONG).show();
+                                                Utils.user_current.setEmail(str_email);
+                                                Utils.user_current.setPass(str_pass);
+                                                Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
+                                                startActivity(intent);
+                                                finish();
                                             }
                                             else{
                                                 Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_LONG).show();
