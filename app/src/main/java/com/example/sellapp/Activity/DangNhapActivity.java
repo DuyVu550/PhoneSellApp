@@ -29,6 +29,7 @@ public class DangNhapActivity extends AppCompatActivity {
     EditText email, pass;
     AppCompatButton btnDangNhap;
     APIBanhang apiBanHang;
+    boolean isLogin = false;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,6 @@ public class DangNhapActivity extends AppCompatActivity {
                                             startActivity(intent);
                                             finish();
                                         }
-
                                     },
                                     throwable -> {
                                         Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();

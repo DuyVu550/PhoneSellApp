@@ -53,7 +53,6 @@ public class DienThoaiActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         apiBanhang = RetrofitClient.getInstance(Utils.BASE_URL).create(APIBanhang.class);
         sanPhamMoiList = new ArrayList<>();
-        loai = getIntent().getIntExtra("loai", 2);
         getData(page); //l
         ActionBar();
         addEventLoad();

@@ -1,5 +1,6 @@
 package com.example.sellapp.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class GioHangActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Button btnMuaHang;
     GioHangAdapter adapter;
+    long tongTienSP = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,10 @@ public class GioHangActivity extends AppCompatActivity {
         Anhxa();
         InitControl();
         tinhTongTien();
+
     }
     private void tinhTongTien(){
-        long tongTienSP = 0;
+        tongTienSP = 0;
         for(int i =0; i < Utils.mangiohang.size(); i++){
             tongTienSP += Utils.mangiohang.get(i).getGiasp() * Utils.mangiohang.get(i).getSoluong();
         }
@@ -76,6 +79,14 @@ public class GioHangActivity extends AppCompatActivity {
             adapter = new GioHangAdapter(getApplicationContext(), Utils.mangiohang);
             recyclerView.setAdapter(adapter);
         }
+        btnMuaHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ThanhToanActivity.class);
+                intent.putExtra("tongTien", tongTienSP);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
