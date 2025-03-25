@@ -4,7 +4,9 @@ import com.example.sellapp.Model.LoaiSPModel;
 import com.example.sellapp.Model.SanPhamMoiModel;
 import com.example.sellapp.Model.UserModel;
 
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -47,6 +49,12 @@ public interface APIBanhang {
             @Field("diachi") String diachi,
             @Field("soluong") int soluong,
             @Field("chitiet") String chitiet
+    );
+    @POST("search.php")
+    @FormUrlEncoded
+    @NonNull
+    Observable<SanPhamMoiModel> search(
+        @Field("search") String search
     );
 }
 

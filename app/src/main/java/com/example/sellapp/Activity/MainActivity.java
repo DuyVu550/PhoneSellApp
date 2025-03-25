@@ -41,6 +41,7 @@ import com.nex3z.notificationbadge.NotificationBadge;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     SanPhamMoiAdapter spAdapter;
     NotificationBadge badge;
     FrameLayout frameLayout;
+    ImageView imgSearch;
 
 
     @Override
@@ -100,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         mangSpMoi = new ArrayList<>();
         badge = findViewById(R.id.menu_sl);
         frameLayout = findViewById(R.id.frameGioHang);
+        imgSearch = findViewById(R.id.imgSearch);
         if(Utils.mangiohang == null){
             Utils.mangiohang = new ArrayList<>();
         }else {
@@ -116,6 +119,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(gioHang);
             }
         });
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private  void getEventClick(){
         listViewMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -130,6 +140,12 @@ public class MainActivity extends AppCompatActivity {
                         Intent dienThoai = new Intent(getApplicationContext(), DienThoaiActivity.class);
                         dienThoai.putExtra("loai", 2);
                         startActivity(dienThoai);
+                        break;
+                    case 5:
+                        Paper.book().delete("email");
+                        Paper.book().delete("pass");
+                        Intent dangNhap = new Intent(getApplicationContext(), DangNhapActivity.class);
+                        startActivity(dangNhap);
                         break;
                 }
 

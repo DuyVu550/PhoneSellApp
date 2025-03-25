@@ -11,6 +11,11 @@ public class LoaiSP {
         this.hinhanh = hinhanh;
     }
 
+    public LoaiSP(String tensanpham, String hinhanh) {
+        this.tensanpham = tensanpham;
+        this.hinhanh = hinhanh;
+    }
+
     public int getId() {
         return id;
     }

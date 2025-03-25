@@ -2,6 +2,7 @@ package com.example.sellapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import com.example.sellapp.retrofit.APIBanhang;
 import com.example.sellapp.retrofit.RetrofitClient;
 import com.example.sellapp.utils.Utils;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -29,6 +31,7 @@ public class DangNhapActivity extends AppCompatActivity {
     EditText email, pass;
     AppCompatButton btnDangNhap;
     APIBanhang apiBanHang;
+    EditText mobile;
     boolean isLogin = false;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     @Override
@@ -41,12 +44,16 @@ public class DangNhapActivity extends AppCompatActivity {
 
     }
     private void Anhxa(){
+        Paper.init(this);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(APIBanhang.class);
         txtdangky = findViewById(R.id.txtdangky);
+        mobile = findViewById(R.id.mobile);
         email = findViewById(R.id.emailDangNhap);
         pass = findViewById(R.id.passDangNhap);
         btnDangNhap = findViewById(R.id.btndangnhap);
     }
+
+
 
     private void initControl(){
         txtdangky.setOnClickListener(new View.OnClickListener() {
@@ -67,20 +74,26 @@ public class DangNhapActivity extends AppCompatActivity {
                 else if(TextUtils.isEmpty(str_pass)){
                     Toast.makeText(getApplicationContext(), "Bạn chưa nhập Pass", Toast.LENGTH_LONG).show();
                 }
+                else if(str_email.equals("admin123") && str_pass.equals("123123")){
+                    Intent intent = new Intent(getApplicationContext(), QuanLyActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
                 else{
+                    Paper.book().write("email", str_email);
+                    Paper.book().write("pass", str_pass);
                     compositeDisposable.add(apiBanHang.dangNhap(str_email, str_pass)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     userModel -> {
                                         if(userModel.isSuccess()){
+                                            Paper.book().read("email");
+                                            Paper.book().read("pass");
                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent);
                                             finish();
                                         }
-                                    },
-                                    throwable -> {
-                                        Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                             ));
                 }

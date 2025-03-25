@@ -63,4 +63,5 @@ dependencies {
     //brade
     implementation (libs.notification.badge)
     implementation(libs.eventbus)
+    implementation (libs.paperdb)
 }

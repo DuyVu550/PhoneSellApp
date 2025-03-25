@@ -14,8 +14,10 @@ library = "1.0.0"
 material = "1.10.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
+neumorphism = "{latest_version}"
 notificationBadge = "1.0.4"
 notificationbadgeVersion = "v0.2.0"
+paperdb = "2.7.2"
 retrofit = "2.9.0"
 rxandroid = "3.0.0"
 rxjava3RetrofitAdapter = "3.0.0"
@@ -38,8 +40,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 material-v170 = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+neumorphism = { module = "com.github.fornewid:neumorphism", version.ref = "neumorphism" }
 notification-badge = { module = "com.nex3z:notification-badge", version.ref = "notificationBadge" }
 notificationbadge = { module = "com.github.nex3z:NotificationBadge", version.ref = "notificationbadgeVersion" }
+paperdb = { module = "io.github.pilgr:paperdb", version.ref = "paperdb" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxandroid" }

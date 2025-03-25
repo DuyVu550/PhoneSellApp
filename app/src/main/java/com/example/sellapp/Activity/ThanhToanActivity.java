@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,9 +13,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.sellapp.R;
 import com.example.sellapp.retrofit.APIBanhang;
@@ -26,6 +22,7 @@ import com.google.gson.Gson;
 
 import java.text.DecimalFormat;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -51,8 +48,8 @@ public class ThanhToanActivity extends AppCompatActivity {
     }
     private void CountItem(){
         total = 0;
-        for(int i = 0; i < Utils.mangiohang.size(); i++){
-            total += Utils.mangiohang.get(i).getSoluong();
+        for(int i = 0; i < Utils.mangmuahang.size(); i++){
+            total += Utils.mangmuahang.get(i).getSoluong();
         }
     }
     private void initControl() {
@@ -67,6 +64,8 @@ public class ThanhToanActivity extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         tongTien = getIntent().getLongExtra("tongTien", 0);
         txtTongTien.setText(decimalFormat.format(tongTien));
+        txtemail.setText(Paper.book().read("email"));
+        txtsodt.setText(Utils.user_current.getMobile());
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
