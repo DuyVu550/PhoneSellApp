@@ -1,6 +1,7 @@
 package com.example.sellapp.retrofit;
 
 import com.example.sellapp.Model.LoaiSPModel;
+import com.example.sellapp.Model.MessageModel;
 import com.example.sellapp.Model.SanPhamMoiModel;
 import com.example.sellapp.Model.UserModel;
 
@@ -56,5 +57,22 @@ public interface APIBanhang {
     Observable<SanPhamMoiModel> search(
         @Field("search") String search
     );
+    @POST("xoa.php")
+    @FormUrlEncoded
+    @NonNull
+    Observable<MessageModel> xoaSanPham(
+            @Field("id") int id
+    );
+    @POST("insertsp.php")
+    @FormUrlEncoded
+    Observable<MessageModel> insertSp(
+            @Field("tensp") String tensp,
+            @Field("gia") String gia,
+            @Field("hinhanh") String hinhanh,
+            @Field("mota") String mota,
+            @Field("loai") int id
+    );
+
+
 }
 
