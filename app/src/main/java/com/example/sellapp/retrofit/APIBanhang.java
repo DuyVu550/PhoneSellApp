@@ -72,6 +72,16 @@ public interface APIBanhang {
             @Field("mota") String mota,
             @Field("loai") int id
     );
+    @POST("updatesp.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateSp(
+            @Field("tensp") String tensp,
+            @Field("gia") String gia,
+            @Field("hinhanh") String hinhanh,
+            @Field("mota") String mota,
+            @Field("loai") int idloai,
+            @Field("id") int id
+    );
 
 
 }
