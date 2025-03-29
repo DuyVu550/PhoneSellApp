@@ -58,10 +58,17 @@ public class QuanLyActivity extends AppCompatActivity {
     }
 
     private void initControl() {
+        img_them.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ThemSpActivity.class);
+                startActivity(intent);
+            }
+        });
         img_DangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Bạn muốn đăng xuất?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -70,23 +77,17 @@ public class QuanLyActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+
                     }
                 });
+                builder.show();
             }
         });
-        img_them.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ThemSpActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
+    }
     private void initView() {
         img_them = findViewById(R.id.img_them);
         img_DangXuat = findViewById(R.id.img_dangXuat);
