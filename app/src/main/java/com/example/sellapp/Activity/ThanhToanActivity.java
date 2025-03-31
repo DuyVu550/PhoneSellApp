@@ -88,6 +88,8 @@ public class ThanhToanActivity extends AppCompatActivity {
                                         if (Utils.mangmuahang != null && !Utils.mangmuahang.isEmpty()) {
                                             Utils.mangiohang.removeAll(Utils.mangmuahang);
                                         }
+
+                                        // Chuyển màn hình
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                         finish();
