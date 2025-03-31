@@ -49,8 +49,7 @@ public class ThanhToanActivity extends AppCompatActivity {
         initView();
         CountItem();
         initControl();
-        spinnerPaymentMethod = findViewById(R.id.spinnerPaymentMethod);
-        imgQR = findViewById(R.id.imgQR);
+
         // Thiết lập listener cho spinner
         spinnerPaymentMethod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -139,7 +138,8 @@ public class ThanhToanActivity extends AppCompatActivity {
         edtdiachi = findViewById(R.id.edtDiaChi);
         txtsodt = findViewById(R.id.txtSoDienThoai);
         btnDatHang = findViewById(R.id.btnDatHang);
-
+        spinnerPaymentMethod = findViewById(R.id.spinnerPaymentMethod);
+        imgQR = findViewById(R.id.imgQR);
     }
 
     @Override
