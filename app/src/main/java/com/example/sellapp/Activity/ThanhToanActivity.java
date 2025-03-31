@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,8 @@ public class ThanhToanActivity extends AppCompatActivity {
     TextView txtTongTien, txtsodt, txtemail;
     EditText edtdiachi;
     long tongTien;
+    Spinner spinnerPaymentMethod;
+    ImageView imgQR;
     int total;
     AppCompatButton btnDatHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -44,6 +49,24 @@ public class ThanhToanActivity extends AppCompatActivity {
         initView();
         CountItem();
         initControl();
+        spinnerPaymentMethod = findViewById(R.id.spinnerPaymentMethod);
+        imgQR = findViewById(R.id.imgQR);
+        // Thiết lập listener cho spinner
+        spinnerPaymentMethod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String method = parent.getItemAtPosition(position).toString();
+                if(method.equals("Thanh toán Momo")){
+                    imgQR.setVisibility(View.VISIBLE);
+                } else {
+                    imgQR.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                imgQR.setVisibility(View.GONE);
+            }
+        });
     }
     private void CountItem(){
         total = 0;
@@ -82,7 +105,7 @@ public class ThanhToanActivity extends AppCompatActivity {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     userModel -> {
-                                        Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
                                         // Sau khi đặt hàng thành công, xóa giỏ hàng
 //                                        Utils.mangmuahang.clear();
                                         if (Utils.mangmuahang != null && !Utils.mangmuahang.isEmpty()) {
@@ -106,6 +129,7 @@ public class ThanhToanActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     private void initView(){
         apiBanhang = RetrofitClient.getInstance(Utils.BASE_URL).create(APIBanhang.class);
