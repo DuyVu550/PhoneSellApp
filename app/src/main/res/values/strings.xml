@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SellApp</string>
+    <!-- Các string khác -->
+    <string-array name="payment_methods">
+        <item>Thanh toán khi nhận hàng</item>
+        <item>Thanh toán Momo</item>
+    </string-array>
 </resources>

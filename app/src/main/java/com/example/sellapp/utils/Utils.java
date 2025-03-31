@@ -10,6 +10,6 @@ public class Utils {
     public static List<GioHang> mangiohang = new ArrayList<>();
     public static List<GioHang> mangmuahang = new ArrayList<>();
 //    public static final String BASE_URL = "http://10.21.10.37/sellapp/";
-    public static final String BASE_URL = "http://192.168.101.146:8081/sellapp/";
+    public static final String BASE_URL = "http://192.168.1.117:8081/sellapp/";
     public static User user_current = new User();
 }
