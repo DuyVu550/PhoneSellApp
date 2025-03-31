@@ -46,7 +46,7 @@ public class QuanLyActivity extends AppCompatActivity {
     List<SanPhamMoi> list = new ArrayList<>();
     SanPhamMoiAdapter spAdapter;
     SanPhamMoi sanPhamMoiSuaXoa;
-    @Override
+    @Override//
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);

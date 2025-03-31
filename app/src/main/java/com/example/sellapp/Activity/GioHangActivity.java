@@ -40,28 +40,6 @@ public class GioHangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_gio_hang);
-
-        // Khởi tạo các view liên quan đến spinner và QR code
-     //   spinnerPaymentMethod = findViewById(R.id.spinnerPaymentMethod);
-       // imgQR = findViewById(R.id.imgQR);
-
-        // Thiết lập listener cho spinner
-      /*  spinnerPaymentMethod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String method = parent.getItemAtPosition(position).toString();
-                if(method.equals("Thanh toán Momo")){
-                    imgQR.setVisibility(View.VISIBLE);
-                } else {
-                    imgQR.setVisibility(View.GONE);
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                imgQR.setVisibility(View.GONE);
-            }
-        });*/
-
         Anhxa();
         InitControl();
         tinhTongTien();
